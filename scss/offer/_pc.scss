@@ -1,0 +1,905 @@
+$component-name: 'component';
+
+.#{$component-name} {
+  margin: 0 auto;
+  @include vw-convert-pc(padding, 110 0);
+  @include font-sharpsans();
+
+  &__title {
+    @include vw-convert-pc(max-width, 1050);
+    margin: 0 auto;
+    @include vw-font-size-pc(48);
+    @include line-height-pc(1.3, 48);
+    text-align: center;
+    @include multi-ellipsis(2);
+  }
+
+  &__txt {
+    width: 100%;
+    @include vw-convert-pc(margin-top, 55);
+    @include font-samsungone();
+    @include vw-font-size-pc(16);
+    @include line-height-pc(2, 16);
+    color: $color-text-grey;
+    @include vw-convert-pc(letter-spacing, 0.2);
+    @include multi-ellipsis(3);
+    text-align: center;
+  }
+
+  &-box {
+    display: flex;
+    align-items: center;
+    position: relative;
+    max-width: $screen-xlg;
+    @include vw-convert-pc(padding-bottom, 100);
+    border-bottom: 1px solid;
+    margin: 0 auto;
+  }
+
+  .div-line {
+    width: 100%;
+    height: 1px;
+    @include vw-convert-pc(margin-top, 80);
+    background: $color-line-grey;
+  }
+
+  .offer-title {
+    display: inline-block;
+    @include vw-convert-pc(margin, 80 0 80 350);
+    @include vw-font-size-pc(18);
+  }
+
+  .icon-plus {
+    position: relative;
+    @include vw-convert-pc(right, 70);
+    @include vw-convert-pc(bottom, 20);
+    @include vw-convert-pc(width, 40);
+    @include vw-convert-pc(height, 40);
+
+    &-w, &-h {
+      position: absolute;
+      background: $black;
+    }
+
+    &-w {
+      top: 50%;
+      width: 100%;
+      @include vw-convert-pc(height, 3);
+      transform: translateY(-50%);
+    }
+
+    &-h {
+      left: 50%;
+      height: 100%;
+      @include vw-convert-pc(width, 3);
+      transform: translateX(-50%);
+    }
+  }
+
+  .product-fiche {
+    display: inline-block;
+    position: relative;
+    @include vw-convert-pc(margin-right, 6);
+    font-weight: 700;
+    @include vw-font-size-pc(12);
+    color: $color-black-text;
+    @include vw-convert-pc(letter-spacing, 1.3);
+    text-transform: uppercase;
+  }
+
+  .fiche-tag {
+    display: inline-block;
+    position: relative;
+    @include vw-convert-pc(width, 35);
+    @include vw-convert-pc(height, 20);
+    @include vw-convert-pc(padding-left, 5);
+    background: $color-green;
+    font-weight: 700;
+    @include vw-font-size-pc(14);
+    color: $white;
+    text-align: left;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      @include vw-convert-pc(left, 35);
+      display: inline-block;
+      border-bottom: 10px solid transparent;
+      border-top: 10px solid transparent;
+      border-left: 10px solid $color-green;
+      border-right: 10px solid transparent;
+      @include vw-convert-pc(border-width, 10);
+      content: '';
+    }
+  }
+
+  .product-price {
+    font-weight: 700;
+    @include vw-font-size-pc(18);
+    color: $color-black-text;
+    text-align: center;
+
+    &-box {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+    }
+
+    &-origin {
+      @include vw-font-size-pc(12);
+      color: $color-text-light-grey;
+    }
+
+    &-save {
+      @include vw-convert-pc(margin-left, 3);
+      font-weight: 700;
+      @include vw-font-size-pc(12);
+      color: $color-blue;
+      border: none;
+    }
+  }
+
+  .soldout-txt {
+    display: inline-block;
+    position: absolute;
+    @include vw-convert-pc(top, 250);
+    left: 50%;
+    @include vw-convert-pc(width, 120);
+    @include vw-convert-pc(height, 120);
+    @include vw-convert-pc(padding-top, 28);
+    @include vw-font-size-pc(25);
+    border-radius: 50%;
+    background: $black;
+    font-weight: 700;
+    color: $white;
+    text-align: center;
+    opacity: .8;
+    text-transform: uppercase;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+
+  .product {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include vw-convert-pc(width, 448);
+    height: 100%;
+    @include font-samsungone();
+    user-select: none;
+
+    &.soldout {
+      .soldout-txt {
+        display: block;
+      }
+
+      &::after {
+        position: absolute;
+        height: 100%;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: $white;
+        opacity: .4;
+        z-index: 10;
+        content: '';
+      }
+    }
+
+    &.dc-price {
+      .product {
+        &-dc-box {
+          display: block;
+        }
+
+        &-price {
+          top: 0;
+
+          &-origin, &-save {
+            display: inline-block;
+          }
+        }
+      }
+    }
+
+    .soldout-txt {
+      display: none;
+    }
+
+    &__inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      @include vw-convert-pc(max-width, 250);
+      height: 100%;
+      text-align: center;
+      opacity: 1;
+    }
+
+    &__img {
+      &-wrap {
+        position: relative;
+        @include vw-convert-pc(width, 150);
+        @include vw-convert-pc(height, 243);
+        @include vw-convert-pc(margin-top, 35);
+      }
+
+      &-pc {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      &-mo {
+        display: none;
+      }
+    }
+
+    &__contents {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      @include vw-convert-pc(gap, 17);
+    }
+
+    &-dc-box {
+      display: none;
+    }
+
+    &__color {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include vw-convert-pc(width, 23);
+      @include vw-convert-pc(height, 23);
+      @include vw-convert-pc(margin, 0 3);
+      padding: 1px;
+      @include vw-convert-pc(border-radius, 12.5);
+      border: 1px solid $color-text-grey;
+      background-color: $white;
+
+      &::after {
+        display: block;
+        @include vw-convert-pc(width, 17);
+        @include vw-convert-pc(height, 17);
+        border-radius: 50%;
+        background-color: $color-option-purple;
+        content: '';
+      }
+
+      &-box {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        width: 100%;
+      }
+    }
+
+    &__capacity {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include vw-convert-pc(width, 85);
+      @include vw-convert-pc(height, 30);
+      @include vw-convert-pc(padding, 0 10);
+      border: 1px solid;
+      border-radius: 2px;
+      font-weight: 700;
+      @include vw-font-size-pc(12);
+    }
+
+    &__name {
+      position: relative;
+      @include vw-convert-pc(top, 5);
+      @include vw-convert-pc(max-width, 150);
+      @include vw-convert-pc(padding, 5);
+      @include vw-font-size-pc(22);
+      @include line-height-pc(1.2, 22);
+      color: $color-black-text;
+      text-align: center;
+    }
+
+    &__sku {
+      position: relative;
+      @include vw-convert-pc(bottom, 8);
+      @include vw-font-size-pc(12);
+      color: $color-text-grey;
+    }
+
+    &__desc {
+      position: relative;
+      @include vw-convert-pc(max-width, 240);
+      @include vw-font-size-pc(14);
+      color: $color-text-grey;
+      @include line-height-pc(1.4, 14);
+      @include vw-convert-pc(letter-spacing, 0.1);
+    }
+  }
+
+  .option {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    background: $white;
+    @include font-samsungone();
+
+    &-title {
+      @include vw-convert-pc(max-width, 640);
+      @include vw-convert-pc(margin-top, -2);
+      @include vw-font-size-pc(20);
+      @include multi-ellipsis(3);
+    }
+
+    &__list {
+      &-wrap {
+        @include vw-convert-pc(margin-top, 10);
+        padding: 0;
+        @include vw-convert-pc(width, 640);
+        background-color: $color-light-grey;
+      }
+
+      &-pc {
+        overflow-y: overlay;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-start;
+        @include vw-convert-pc(max-height, 620);
+        @include vw-convert-pc(margin-top, 36);
+        background-color: $color-light-grey;
+      }
+
+      &-mo {
+        display: none;
+      }
+    }
+
+    &__item {
+      width: 50%;
+      @include vw-convert-pc(height, 325);
+      @include vw-convert-pc(margin-top, 20);
+      @include vw-convert-pc(padding, 0 10 0 10);
+
+      &.dc-price {
+        .product-dc-box {
+          display: block;
+          @include vw-convert-pc(margin-top, 12);
+        }
+
+        .product-price {
+          margin-top: 0;
+
+          &-origin, &-save {
+            display: inline-block;
+          }
+        }
+      }
+
+      &:nth-child(1),
+      &:nth-child(2) {
+        margin-top: 0;
+      }
+
+      &:nth-child(odd) {
+        @include vw-convert-pc(padding-left, 30);
+      }
+
+      &:nth-child(even) {
+        @include vw-convert-pc(padding-right, 30);
+      }
+
+      &:only-child {
+        flex-wrap: wrap;
+        width: 100%;
+        height: auto;
+
+        .option__item-inner {
+          display: flex;
+          align-items: center;
+          @include vw-convert-pc(padding-bottom, 30);
+        }
+
+        &:first-child {
+          @include vw-convert-pc(padding-left, 30);
+          @include vw-convert-pc(padding-right, 30);
+        }
+
+        .product {
+          &-fiche {
+            @include vw-convert-pc(margin-top, 7);
+          }
+
+          &-price-box {
+            @include vw-convert-pc(margin-top, 15);
+          }
+        }
+
+        .option {
+
+          &__label {
+            padding: 0;
+          }
+
+          &__img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+
+            &-wrap {
+              position: relative;
+              @include vw-convert-pc(width, 120);
+              @include vw-convert-pc(height, 243);
+              @include vw-convert-pc(margin-top, 25);
+            }
+          }
+
+          &__sub-title {
+            display: block;
+            @include vw-convert-pc(max-width, 220);
+            @include vw-convert-pc(margin-top, 26);
+            font-weight: normal;
+            @include vw-font-size-pc(14);
+            color: $color-text-grey;
+            text-align: center;
+          }
+
+          &__name {
+            @include vw-convert-pc(margin-top, 15);
+          }
+
+          &__sku {
+            @include vw-convert-pc(margin-top, 13);
+          }
+
+          &__sort {
+            display: block;
+            @include vw-font-size-pc(12);
+            color: $color-text-grey;
+
+            &-color {
+              &::after {
+                display: inline-block;
+                width: 1px;
+                height: 10px;
+                background: $black;
+                @include vw-convert-pc(margin, 0 5);
+                content: '';
+              }
+            }
+          }
+        }
+
+      }
+
+      &.soldout {
+        user-select: none;
+
+        .soldout-txt {
+          display: block;
+          @include vw-convert-pc(top, 100);
+          @include vw-convert-pc(width, 90);
+          @include vw-convert-pc(height, 90);
+          @include vw-convert-pc(padding-top, 25);
+          @include vw-font-size-pc(16);
+        }
+
+        &:only-child {
+
+          .option__item {
+
+            &-inner:hover {
+              border: none;
+            }
+          }
+
+          .soldout-txt {
+            display: block;
+            @include vw-convert-pc(top, 200);
+            left: 50%;
+            @include vw-convert-pc(width, 120);
+            @include vw-convert-pc(height, 120);
+            @include vw-convert-pc(padding-top, 28);
+            @include vw-font-size-pc(25);
+            opacity: .8;
+            transform: translateX(-50%);
+          }
+        }
+
+        .option {
+
+          &__item-inner {
+            position: relative;
+            border: 1px solid $color-dimmed-grey;
+
+            &::after {
+              position: absolute;
+              height: 100%;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              background: $white;
+              opacity: .5;
+              z-index: 10;
+              content: '';
+            }
+
+            &:hover {
+              border: 1px solid $color-dimmed-grey;
+            }
+          }
+
+          &__item {
+            border: none;
+          }
+
+          &__input:checked {
+            border: none;
+          }
+        }
+      }
+
+      &-inner {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+        height: 100%;
+        background: $white;
+      }
+    }
+
+    &__input {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      border: 1px solid $color-line-grey;
+
+      &:hover {
+        border: 1px solid $color-line-grey;
+      }
+
+      &:checked {
+        // border: 1px solid $color-black-text;
+        border-color: $color-black-text;
+      }
+    }
+
+    &__label {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .soldout-txt,
+    &__sub-title {
+      display: none;
+    }
+
+    &__img {
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+
+      &-wrap {
+        position: relative;
+        @include vw-convert-pc(width, 50);
+        @include vw-convert-pc(height, 125);
+        @include vw-convert-pc(margin-top, 28);
+      }
+    }
+
+    &__contents {
+      @include vw-convert-pc(max-width, 350);
+      @include vw-convert-pc(padding, 0 20);
+      text-align: center;
+    }
+
+    &__name {
+      display: inline-block;
+      width: 100%;
+      @include vw-convert-pc(margin-top, 15);
+      @include vw-font-size-pc(16);
+      color: $color-black-text;
+    }
+
+    &__sku {
+      position: relative;
+      @include vw-font-size-pc(12);
+    }
+
+    &__sort {
+      &-color {
+        display: inline-block;
+      }
+
+      &-capacity {
+        display: inline-block;
+      }
+    }
+
+    .product {
+      &-fiche {
+        display: inline-block;
+        @include vw-convert-pc(margin-top, 15);
+      }
+
+      &-price {
+        display: block;
+        @include vw-convert-pc(margin-top, 12);
+
+        &-origin, &-save {
+          display: none;
+        }
+      }
+
+      &-dc-box {
+        display: none;
+      }
+    }
+
+    &__sort {
+      display: none;
+    }
+
+    &__select {
+
+      &-pc {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        @include vw-convert-pc(padding, 23 30 30);
+        background-color: $color-light-grey;
+        @include font-samsungone();
+        @include vw-convert-pc(letter-spacing, -0.2);
+      }
+
+      &-mo {
+        display: none;
+      }
+    }
+
+    &__selected {
+      @include vw-convert-pc(padding-bottom, 5);
+      font-weight: 700;
+      @include vw-font-size-pc(18);
+      color: $color-black-text;
+      @include vw-convert-pc(letter-spacing, -1.2);
+      user-select: none;
+    }
+
+    &__clear {
+      @include vw-convert-pc(width, 100);
+      height: 100%;
+      @include vw-font-size-pc(14);
+      color: $color-black-text;
+    }
+  }
+
+  .pay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    @include font-samsungone();
+
+    &.dc-price {
+      font-weight: 700;
+      color: $color-black-text;
+
+      .product {
+        &-total-box {
+          display: flex;
+          align-items: center;
+        }
+
+        &-price {
+          display: inline-block;
+
+          &-origin {
+            font-weight: normal;
+            @include vw-font-size-pc(14);
+          }
+
+          &-save {
+            color: $color-black-text;
+          }
+
+          &-total {
+            word-break: break-all;
+          }
+        }
+      }
+
+      .pay {
+        &__detail {
+          @include vw-convert-pc(width, 352);
+          @include vw-convert-pc(margin-top, 10);
+          @include vw-convert-pc(padding, 0 28 20 45);
+          @include vw-font-size-pc(14);
+
+          &:first-of-type {
+            @include vw-convert-pc(margin-top, 0);
+            @include vw-convert-pc(padding, 10 28 0 45);
+
+            .pay__detail-inner {
+              border-bottom: none;
+            }
+          }
+
+          &:last-of-type {
+            height: auto;
+            @include vw-convert-pc(margin-top, 0);
+            @include vw-convert-pc(padding, 0 20 0 45);
+          }
+        }
+
+        &__sort-total {
+          @include vw-font-size-pc(18);
+          @include vw-convert-pc(padding-top, 18);
+        }
+
+        &__button {
+          @include vw-convert-pc(margin-top, 50);
+        }
+      }
+
+      .product {
+        &-total-box {
+          display: flex;
+          align-items: center;
+          padding: 0;
+        }
+
+        &-price {
+          color: $black;
+          font-weight: 700;
+          @include vw-font-size-pc(14);
+
+          &-origin, &-save {
+            display: inline-block;
+          }
+
+          &-total {
+            display: block;
+            @include vw-convert-pc(padding-top, 10);
+            @include vw-font-size-pc(30);
+            word-break: break-all;
+          }
+        }
+
+        &-save-box {
+          display: block;
+          @include vw-convert-pc(padding-top, 5);
+          text-align: right;
+
+          .product-price {
+
+            &-origin {
+              float: none;
+            }
+
+            &-save {
+              font-weight: 700;
+              border: none;
+              @include vw-font-size-pc(14);
+              color: $color-blue;
+            }
+          }
+        }
+      }
+    }
+
+    &__detail {
+      @include vw-convert-pc(width, 352);
+      @include vw-convert-pc(padding, 0 20 0 45);
+      @include vw-convert-pc(margin-top, 26);
+      @include vw-font-size-pc(14);
+
+      &-inner {
+        border-bottom: 1px solid $color-line-grey;
+        @include vw-convert-pc(padding-bottom, 25);
+      }
+
+      &:first-of-type {
+        margin-top: 2px;
+
+        .pay__detail-inner {
+          @include vw-convert-pc(padding-bottom, 14);
+        }
+      }
+
+      &:last-of-type {
+        height: auto;
+        margin-top: 0;
+
+        .pay__detail-inner {
+          padding: 0;
+          border-bottom: none;
+          @include vw-convert-pc(margin-top, 5);
+          @include vw-convert-pc(padding-right, 6);
+        }
+      }
+    }
+
+    &__sort {
+      color: $color-black-text;
+    }
+
+    .product-save-box {
+      display: none;
+    }
+
+    .product {
+      &-total-box {
+        display: block;
+        @include vw-convert-pc(padding-top, 29);
+        @include vw-convert-pc(padding-bottom, 17);
+      }
+
+      &-price {
+        display: block;
+        width: 100%;
+        @include vw-convert-pc(padding-top, 4);
+        font-weight: normal;
+        @include vw-font-size-pc(14);
+        text-align: right;
+
+        &-origin, &-save {
+          display: none;
+          float: right;
+        }
+
+        &-save {
+          @include vw-convert-pc(margin-left, 5);
+        }
+
+        &-total {
+          @include vw-convert-pc(padding-top, 17);
+          font-weight: 700;
+          @include vw-font-size-pc(35);
+          word-break: break-all;
+        }
+      }
+    }
+
+    &__sort-total {
+      font-weight: 700;
+      @include vw-font-size-pc(22);
+      color: $color-black-text;
+    }
+
+    &__button {
+      width: 80%;
+      @include vw-convert-pc(height, 50);
+      @include vw-convert-pc(margin-left, 20);
+      @include vw-convert-pc(margin-top, 6);
+      @include vw-convert-pc(padding, 5 15);
+      @include vw-convert-pc(border-radius, 25);
+      background: $color-cobalt-blue;
+      @include vw-font-size-pc(14);
+      color: $white;
+      @include vw-convert-pc(letter-spacing, 2);
+      text-transform: uppercase;
+
+      &[disabled] {
+        background: $color-line-grey;
+      }
+    }
+  }
+}
